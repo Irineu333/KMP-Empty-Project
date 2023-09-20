@@ -1,7 +1,5 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-
 plugins {
-    kotlin("jvm") version "1.9.0"
+    kotlin("multiplatform") version "1.9.0"
 }
 
 group = "org.example"
@@ -9,14 +7,6 @@ version = "1.0-DEV"
 
 repositories {
     mavenCentral()
-}
-
-dependencies {
-    testImplementation(kotlin("test"))
-}
-
-tasks.test {
-    useJUnitPlatform()
 }
 
 java {
@@ -27,7 +17,29 @@ java {
 }
 
 kotlin {
-    compilerOptions {
-        jvmTarget.set(JvmTarget.JVM_1_8)
+
+    // implement project targets
+    // https://kotlinlang.org/docs/multiplatform-discover-project.html#targets
+    jvm {
+        compilations.all {
+            kotlinOptions.jvmTarget = "1.8"
+        }
+
+        testRuns.named("test") {
+            executionTask.configure {
+                useJUnitPlatform()
+            }
+        }
+    }
+
+    // implement project sourceSets
+    // https://kotlinlang.org/docs/multiplatform-discover-project.html#source-sets
+    sourceSets {
+        val commonMain by getting
+        val commonTest by getting {
+            dependencies {
+                implementation(kotlin("test"))
+            }
+        }
     }
 }
