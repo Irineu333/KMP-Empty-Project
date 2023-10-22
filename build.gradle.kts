@@ -20,26 +20,9 @@ kotlin {
 
     // implement project targets
     // https://kotlinlang.org/docs/multiplatform-discover-project.html#targets
-    jvm {
-        compilations.all {
-            kotlinOptions.jvmTarget = "1.8"
-        }
 
-        testRuns.named("test") {
-            executionTask.configure {
-                useJUnitPlatform()
-            }
-        }
-    }
-
-    // implement project sourceSets
-    // https://kotlinlang.org/docs/multiplatform-discover-project.html#source-sets
     sourceSets {
-        val commonMain by getting
-        val commonTest by getting {
-            dependencies {
-                implementation(kotlin("test"))
-            }
-        }
+        // implement project source sets
+        // https://kotlinlang.org/docs/multiplatform-discover-project.html#source-sets
     }
 }
