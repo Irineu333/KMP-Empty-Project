@@ -2,6 +2,11 @@
 
 Template of an empty kotlin multiplatform project.
 
+## Versions
+- Kotlin: 1.9.0
+- Gradle: 8.2
+- JDK: 19
+
 ## Starting template
 - [Kotlin Empty Project](https://github.com/Irineu333/Kotlin-Empty-Project)
 
